@@ -11,3 +11,5 @@ Route::get('/', function(){
  * do Controller ProdutoController em pp\Http\Controllers
  */
 Route::get('/produtos', 'ProdutoController@lista');
+
+Route::get('/produtos/mostra', 'ProdutoController@mostra');

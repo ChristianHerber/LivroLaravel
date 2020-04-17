@@ -2,7 +2,7 @@
 
     namespace App\Http\Controllers;
 
-    //chamando a classe DB para utilizae seus métodos
+    use Request;
     use Illuminate\Support\Facades\DB;
 
     class ProdutoController extends Controller{
@@ -19,15 +19,24 @@
              */
             $produtos = DB::select('select * from produtos');
 
-            foreach($produtos as $p){
-                $html .= "<li> Nome:  {$p->nome}, Descrição:  {$p->descricao} </li>";
+            /**
+             * renderizando a view listagem.php e passando a
+             * variável $produtos para a view
+             */
+            return view('listagem')->withProdutos($produtos);
+
+        }
+
+        public function mostra(){
+            $id = Request::input('id', 0);
+
+            $resposta = DB::select('select * from produtos where id = ?', [$id]);
+
+            if(empty($resposta)){
+                return "Esse Produto não existe.";
+            } else {
+                return view('detalhes')->with('p', $resposta[0]);
             }
-
-            $html .= '</ul>';
-
-            //exibe a saída
-            return $html;
-
         }
 
     }
