@@ -25,6 +25,7 @@
 
             $html .= '</ul>';
 
+            //exibe a saída
             return $html;
 
         }
