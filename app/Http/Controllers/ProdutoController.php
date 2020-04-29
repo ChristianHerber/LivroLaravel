@@ -20,7 +20,7 @@
             $produtos = DB::select('select * from produtos');
 
             /**
-             * renderizando a view listagem.php e passando a
+             * renderizando a view listagem.blade.php e passando a
              * variável $produtos para a view
              */
             return view('listagem')->withProdutos($produtos);

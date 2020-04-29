@@ -13,17 +13,10 @@
 
     <div class="container">
 
-        <div class="card mt-4">
-            <div class="card-header">
-                <h3><?= $p->nome ?></h3>
-            </div>
-            <div class="card-body">
-                <p><?= $p->valor ?></p>
-                <p><?= $p->descricao ?></p>
-            </div>
-            <div class="card-footer">
-                <p><?= $p->quantidade ?></p>
-            </div>
-        </div>
+        @yield('conteudo')
 
     </div>
+
+</body>
+</html>
+
