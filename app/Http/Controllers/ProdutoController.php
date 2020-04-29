@@ -24,6 +24,7 @@
              * variável $produtos para a view
              */
             return view('listagem')->withProdutos($produtos);
+            //return view('listagem')->with('produtos', array());
 
         }
 
