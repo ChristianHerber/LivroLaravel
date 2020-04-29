@@ -32,7 +32,7 @@
                 <td><?= $p->valor ?></td>
                 <td><?= $p->descricao ?></td>
                 <td><?= $p->quantidade ?></td>
-                <td><a href="/produtos/mostra?id=<?= $p->id ?>" class="btn btn-sm btn-primary">visualizar</a></td>
+                <td><a href="/produtos/mostra/<?= $p->id ?>" class="btn btn-sm btn-primary">visualizar</a></td>
             </tr>
         <?php endforeach ?>
             </tbody>
