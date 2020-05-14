@@ -24,7 +24,7 @@
             </thead>
             <tbody>
             @foreach($produtos as $p)
-            <tr>
+            <tr class="{{$p->quantidade <= 1 ? 'bg-danger text-white' : ''}}">
                 <td>{{$p->nome}}</td>
                 <td>{{$p->valor}}</td>
                 <td>{{$p->descricao}}</td>
@@ -35,4 +35,7 @@
             </tbody>
         </table>
     @endif
+        <span class="badge badge-danger p-2 float-right">
+            01 ou menos no estoque
+        </span>
 @endsection
