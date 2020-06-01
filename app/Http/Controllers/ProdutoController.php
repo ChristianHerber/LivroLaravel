@@ -50,7 +50,14 @@
             $valor = Request::input('valor');
             $quantidade = Request::input('quantidade');
 
-            return implode(',', array($nome,$descricao,$valor,$quantidade));
+            //return implode(',', array($nome,$descricao,$valor,$quantidade));
+
+            DB::insert(
+                'insert into produtos (nome,quantidade,valor,descricao) values (?,?,?,?)',
+                array($nome,$quantidade,$valor,$descricao)
+            );
+
+            return view('produto.adicionado');
         }
 
     }
