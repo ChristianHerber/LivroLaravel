@@ -1,4 +1,4 @@
-@extends('principal')
+@extends('layout.principal')
 
 @section('conteudo')
     <div class="card mt-4">

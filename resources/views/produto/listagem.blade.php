@@ -1,4 +1,4 @@
-@extends('principal')
+@extends('layout.principal')
 
 @section('conteudo')
 
@@ -10,7 +10,7 @@
 
     @else
 
-        <h1 class="text-center mt-2 mb-4">Listagem de Produtos</h1>
+        <h1 class="text-center mt-4 mb-4">Listagem de Produtos</h1>
 
         <table class="table table-striped table-bordered">
             <thead class="thead-dark">

@@ -23,7 +23,7 @@
              * renderizando a view listagem.blade.php e passando a
              * variável $produtos para a view
              */
-            return view('listagem')->withProdutos($produtos);
+            return view('produto/listagem')->withProdutos($produtos);
             //return view('listagem')->with('produtos', array());
 
         }
@@ -36,8 +36,21 @@
             if(empty($resposta)){
                 return "Esse Produto não existe.";
             } else {
-                return view('detalhes')->with('p', $resposta[0]);
+                return view('produto/detalhes')->with('p', $resposta[0]);
             }
+        }
+
+        public function novo(){
+            return view('produto.formulario');
+        }
+
+        public function adiciona(){
+            $nome = Request::input('nome');
+            $descricao = Request::input('descricao');
+            $valor = Request::input('valor');
+            $quantidade = Request::input('quantidade');
+
+            return implode(',', array($nome,$descricao,$valor,$quantidade));
         }
 
     }
