@@ -72,7 +72,15 @@
                 ]
             );
 
-            return view('produto.adicionado')->with('nome',$nome);
+            //return view('produto.adicionado')->with('nome',$nome);
+
+            /**
+             * redirecionando para a listagem de produtos
+             * após a inserção de registro no banco de dados
+             */
+            return redirect()
+                ->action('ProdutoController@lista')
+                ->withInput(Request::only('nome'));
         }
 
     }

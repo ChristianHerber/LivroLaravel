@@ -24,13 +24,13 @@
             </thead>
             <tbody>
             @foreach($produtos as $p)
-            <tr class="{{$p->quantidade <= 1 ? 'bg-danger text-white' : ''}}">
-                <td>{{$p->nome}}</td>
-                <td>{{$p->valor}}</td>
-                <td>{{$p->descricao}}</td>
-                <td>{{$p->quantidade}}</td>
-                <td><a href="/produtos/mostra/{{$p->id}}" class="btn btn-sm btn-primary">visualizar</a></td>
-            </tr>
+                <tr class="{{$p->quantidade <= 1 ? 'bg-danger text-white' : ''}}">
+                    <td>{{$p->nome}}</td>
+                    <td>{{$p->valor}}</td>
+                    <td>{{$p->descricao}}</td>
+                    <td>{{$p->quantidade}}</td>
+                    <td><a href="/produtos/mostra/{{$p->id}}" class="btn btn-sm btn-primary">visualizar</a></td>
+                </tr>
             @endforeach
             </tbody>
         </table>
@@ -38,4 +38,11 @@
         <span class="badge badge-danger p-2 float-right">
             01 ou menos no estoque
         </span>
+
+        @if(old('nome'))
+            <p class="alert alert-success mt-4">
+                <strong>Sucesso!</strong>
+                O produto {{old('nome')}} foi adicionado!
+            </p>
+        @endif
 @endsection
