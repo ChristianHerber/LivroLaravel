@@ -52,12 +52,27 @@
 
             //return implode(',', array($nome,$descricao,$valor,$quantidade));
 
-            DB::insert(
-                'insert into produtos (nome,quantidade,valor,descricao) values (?,?,?,?)',
-                array($nome,$quantidade,$valor,$descricao)
+            /**
+             * Inserindo os dados no banco com DB::insert
+             */
+//            DB::insert(
+//                'insert into produtos (nome,quantidade,valor,descricao) values (?,?,?,?)',
+//                array($nome,$quantidade,$valor,$descricao)
+//            );
+
+            /**
+             * inserindo dados no banco com DB::table
+             */
+            DB::table('produtos')->insert(
+                [
+                    'nome' => $nome,
+                    'quantidade' => $quantidade,
+                    'valor' => $valor,
+                    'descricao' => $descricao
+                ]
             );
 
-            return view('produto.adicionado');
+            return view('produto.adicionado')->with('nome',$nome);
         }
 
     }
