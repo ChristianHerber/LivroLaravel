@@ -20,4 +20,4 @@ Route::get(
 
 Route::get('/produtos/novo','ProdutoController@novo');
 
-Route::get('/produtos/adiciona', 'ProdutoController@adiciona');
+Route::post('/produtos/adiciona', 'ProdutoController@adiciona');

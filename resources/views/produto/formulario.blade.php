@@ -4,7 +4,11 @@
 
     <div class="container mt-4 mb-4">
 
-        <form action="/produtos/adiciona">
+        <form action="/produtos/adiciona" method="post">
+
+            {{-- campo oculto _token necessário para envios com o método post--}}
+            <input type="hidden" name="_token" value="{{csrf_token()}}">
+
             <div class="form-group">
                 <label for="nome">Nome</label>
                 <input name="nome" class="form-control"/>
