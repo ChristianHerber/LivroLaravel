@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
 
+    use App\Produto;
     use Request;
     use Illuminate\Support\Facades\DB;
 
@@ -17,7 +18,12 @@
              * da query feita utilizando o método "select"
              * da Classe "DB"
              */
-            $produtos = DB::select('select * from produtos');
+            //$produtos = DB::select('select * from produtos');
+
+            /**
+             * Fazendo a query com o Eloquent
+             */
+             $produtos = Produto::all();
 
             /**
              * renderizando a view listagem.blade.php e passando a
@@ -30,14 +36,15 @@
 
         public function mostra($id){
             //$id = Request::route('id');
+            //$produto = DB::select('select * from produtos where id = ?', [$id]);
 
-            $resposta = DB::select('select * from produtos where id = ?', [$id]);
+            $produto = Produto::find($id);
 
-            if(empty($resposta)){
+            if(empty($produto)){
                 return "Esse Produto não existe.";
-            } else {
-                return view('produto/detalhes')->with('p', $resposta[0]);
             }
+
+            return view('produto/detalhes')->with('p', $produto);
         }
 
         public function novo(){
@@ -45,10 +52,11 @@
         }
 
         public function adiciona(){
-            $nome = Request::input('nome');
-            $descricao = Request::input('descricao');
-            $valor = Request::input('valor');
-            $quantidade = Request::input('quantidade');
+
+//            $nome = Request::input('nome');
+//            $descricao = Request::input('descricao');
+//            $valor = Request::input('valor');
+//            $quantidade = Request::input('quantidade');
 
             //return implode(',', array($nome,$descricao,$valor,$quantidade));
 
@@ -63,16 +71,40 @@
             /**
              * inserindo dados no banco com DB::table
              */
-            DB::table('produtos')->insert(
-                [
-                    'nome' => $nome,
-                    'quantidade' => $quantidade,
-                    'valor' => $valor,
-                    'descricao' => $descricao
-                ]
-            );
+//            DB::table('produtos')->insert(
+//                [
+//                    'nome' => $nome,
+//                    'quantidade' => $quantidade,
+//                    'valor' => $valor,
+//                    'descricao' => $descricao
+//                ]
+//            );
 
             //return view('produto.adicionado')->with('nome',$nome);
+
+            /**************************************
+             * Inserirndo no banco com o Eloquent
+             **************************************/
+            # criando uma nova instancia de Produto()
+            //$produto = new Produto();
+
+            # pegando os valores inseridos os campos do formulário um por um
+            //$produto->nome = Request::input('nome');
+            //$produto->valor = Request::input('valor');
+            //$produto->descricao = Request::input('descricao');
+            //$produto->quantidade = Request::input('quantidade');
+
+            # passando um array
+            //$params = Request::all();
+            # recebendo os valores do array no objeto
+            //$produto = new Produto($params);
+
+            # gravando os registros
+            //$produto->save();
+
+            # simplificando ainda mais a inserção de dados
+            # utilizando o factory method create
+            Produto::create(Request::all());
 
             /**
              * redirecionando para a listagem de produtos
@@ -84,8 +116,9 @@
         }
 
         public function listaJson(){
-            $produtos = DB::select('select * from produtos');
-            return $produtos;
+            //$produtos = DB::select('select * from produtos');
+            $produtos = Produto::all();
+            return response()->json($produtos);
         }
 
     }
