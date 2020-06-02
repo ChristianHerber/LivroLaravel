@@ -19,18 +19,19 @@
                     <th>Valor</th>
                     <th>Descrição</th>
                     <th>Quantidade</th>
-                    <th colspan="2"></th>
+                    <th colspan="3"></th>
                 </tr>
             </thead>
             <tbody>
             @foreach($produtos as $p)
-                <tr class="{{$p->quantidade <= 1 ? 'bg-danger text-white' : ''}}">
+                <tr class="{{$p->quantidade <= 1 ? 'bg-warning text-dark' : ''}}">
                     <td>{{$p->nome}}</td>
                     <td>{{$p->valor}}</td>
                     <td>{{$p->descricao}}</td>
                     <td>{{$p->quantidade}}</td>
-                    <td><a href="/produtos/mostra/{{$p->id}}" class="btn btn-sm btn-primary">visualizar</a></td>
+                    <td><a href="{{action('ProdutoController@mostra', $p->id)}}" class="btn btn-sm btn-primary">visualizar</a></td>
                     <td><a href="{{action('ProdutoController@remove', $p->id)}}" class="btn btn-sm btn-danger">deletar</a></td>
+                    <td><a href="{{action('ProdutoController@altera', $p->id)}}" class="btn btn-sm btn-dark">Alterar</a></td>
                 </tr>
             @endforeach
             </tbody>

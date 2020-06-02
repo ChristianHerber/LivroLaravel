@@ -4,7 +4,8 @@
 
     use App\Produto;
     use Request;
-    use Illuminate\Support\Facades\DB;
+    use App\Http\Requests\ProdutosRequest;
+
 
     class ProdutoController extends Controller{
 
@@ -51,7 +52,7 @@
             return view('produto.formulario');
         }
 
-        public function adiciona(){
+        public function adiciona(ProdutosRequest $request){
 
         //códigos não utilizados, foram dimplificados
 
@@ -106,10 +107,9 @@
 
         //  códigos não utilizados, foram dimplificados
 
-
             # simplificando ainda mais a inserção de dados
             # utilizando o factory method create
-            Produto::create(Request::all());
+            Produto::create($request->all());
 
             /**
              * redirecionando para a listagem de produtos
@@ -133,6 +133,10 @@
 
             return redirect()->action('ProdutoController@lista');
 
+        }
+
+        public function altera($id){
+            return redirect()->action('ProdutoController@lista');
         }
 
     }
