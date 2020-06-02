@@ -19,7 +19,7 @@
                     <th>Valor</th>
                     <th>Descrição</th>
                     <th>Quantidade</th>
-                    <th></th>
+                    <th colspan="2"></th>
                 </tr>
             </thead>
             <tbody>
@@ -30,6 +30,7 @@
                     <td>{{$p->descricao}}</td>
                     <td>{{$p->quantidade}}</td>
                     <td><a href="/produtos/mostra/{{$p->id}}" class="btn btn-sm btn-primary">visualizar</a></td>
+                    <td><a href="{{action('ProdutoController@remove', $p->id)}}" class="btn btn-sm btn-danger">deletar</a></td>
                 </tr>
             @endforeach
             </tbody>

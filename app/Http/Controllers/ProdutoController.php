@@ -53,32 +53,34 @@
 
         public function adiciona(){
 
-//            $nome = Request::input('nome');
-//            $descricao = Request::input('descricao');
-//            $valor = Request::input('valor');
-//            $quantidade = Request::input('quantidade');
+        //códigos não utilizados, foram dimplificados
+
+            //$nome = Request::input('nome');
+            //$descricao = Request::input('descricao');
+            //$valor = Request::input('valor');
+            //$quantidade = Request::input('quantidade');
 
             //return implode(',', array($nome,$descricao,$valor,$quantidade));
 
             /**
              * Inserindo os dados no banco com DB::insert
              */
-//            DB::insert(
-//                'insert into produtos (nome,quantidade,valor,descricao) values (?,?,?,?)',
-//                array($nome,$quantidade,$valor,$descricao)
-//            );
+            //DB::insert(
+            //    'insert into produtos (nome,quantidade,valor,descricao) values (?,?,?,?)',
+            //    array($nome,$quantidade,$valor,$descricao)
+            //);
 
             /**
              * inserindo dados no banco com DB::table
              */
-//            DB::table('produtos')->insert(
-//                [
-//                    'nome' => $nome,
-//                    'quantidade' => $quantidade,
-//                    'valor' => $valor,
-//                    'descricao' => $descricao
-//                ]
-//            );
+            //DB::table('produtos')->insert(
+            //    [
+            //        'nome' => $nome,
+            //        'quantidade' => $quantidade,
+            //        'valor' => $valor,
+            //        'descricao' => $descricao
+            //    ]
+            //);
 
             //return view('produto.adicionado')->with('nome',$nome);
 
@@ -102,6 +104,9 @@
             # gravando os registros
             //$produto->save();
 
+        //  códigos não utilizados, foram dimplificados
+
+
             # simplificando ainda mais a inserção de dados
             # utilizando o factory method create
             Produto::create(Request::all());
@@ -119,6 +124,15 @@
             //$produtos = DB::select('select * from produtos');
             $produtos = Produto::all();
             return response()->json($produtos);
+        }
+
+        public function remove($id){
+
+            $produto = Produto::find($id);
+            $produto->delete();
+
+            return redirect()->action('ProdutoController@lista');
+
         }
 
     }
