@@ -27,3 +27,7 @@ Route::get('/produtos/json', 'ProdutoController@listaJson');
 Route::get('/produtos/remove/{id}', 'ProdutoController@remove');
 
 Route::get('produtos/altera/{id}', 'ProdutoController@altera');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
